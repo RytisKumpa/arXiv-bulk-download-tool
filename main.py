@@ -22,8 +22,8 @@ def main(**kwargs):
     start_time = time.time()
     for file in root.findall('file'):
         filename = file.find('filename').text
-        current_year = file.find('timestamp').text[:4]
-        if current_year == year:
+        current_year = file.find('yymm').text[:2]
+        if current_year == year[2:]:
             if os.path.isfile(filename) is False or os.path.getsize(filename) == 0:
                 print('Downloading: {}'.format(filename))
                 with open(filename, 'wb') as file:
